@@ -5,7 +5,7 @@ from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.core.window import Window
-from kivymd.uix.bottomsheet import MDListBottomSheet
+from kivymd.uix.bottomsheet import MDListBottomSheet, MDGridBottomSheet
 from kivymd.toast import toast
 Window.size = (400, 600)
 
@@ -32,15 +32,33 @@ class BottomSheet(MDApp):
         toast(args[0])
 
     def buttom_layer(self):
-        bottom_sheet = MDListBottomSheet(radius=20, radius_from='top')
-        for i in range(10):
+        data = {
+            "Facebook": 'facebook-box',
+            "YouTube": 'youtube',
+            "Instagram": 'instagram',
+            "Twitter": 'twitter-box',
+            "Camera": 'camera'
+        }
+        bottom_sheet = MDGridBottomSheet(radius=20, radius_from="top")
+        for item in data.items():
             bottom_sheet.add_item(
-                f"Item {i+1}",
-                lambda x, y=i+1: self.callback_(f"Item {y} Clicked"),
-                icon='android'
+                item[0],
+                lambda x, y=item[0]: self.callback_(y),
+                icon_src=item[1]
+
             )
         bottom_sheet.open()
 
-
+    # def callback_(self, *args):
+    #     toast(args[0])
+    # def buttom_layer(self):
+    #     bottom_sheet = MDListBottomSheet(radius=20, radius_from='top')
+    #     for i in range(10):
+    #         bottom_sheet.add_item(
+    #             f"Item {i+1}",
+    #             lambda x, y=i+1: self.callback_(f"Item {y} Clicked"),
+    #             icon='android'
+    #         )
+    #     bottom_sheet.open()
 if __name__ == "__main__":
     BottomSheet().run()
