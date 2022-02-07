@@ -1,3 +1,18 @@
+<CustomSheet@BoxLayout>:
+    orientation: 'vertical'
+    size_hint_y:None
+    height:"400dp"
+
+    MDToolbar:
+        title:'Custom Bottom Sheet :'
+    ScrollView:
+        OneLineIconListItem:
+            text:"Preview"
+            on_press:app.open()
+            IconLeftWidget:
+                icon:"page-previous"
+
+
 ScreenManager:
     Screen1:
 
@@ -8,4 +23,5 @@ ScreenManager:
         icon:'android'
         pos_hint:{'center_x':0.5,"center_y":0.5}
         user_font_size:'40sp'
-        on_press:app.buttom_layer()
+        on_press:app.ShowBottomSheet()
+      
